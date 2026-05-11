@@ -1,0 +1,45 @@
+---
+import '../styles/global.css'
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+    title?: string,
+    description?: string
+}
+
+const {
+    title = 'Kiran Katarki',
+    description = 'Product and engineering leader with 9 years of experience building SaaS products across fintech, healthtech, and legal tech.', 
+} = Astro.props
+
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+        />
+    </head>
+    <body class="min-h-screen bg-bg text-text">
+        <script is:inline>
+            const theme = localStorage.getItem('theme');
+            if(theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme:dark)').matches)){
+                document.documentElement.classList.add('dark');
+            }
+
+        </script>
+        <Nav />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
