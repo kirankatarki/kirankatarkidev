@@ -20,24 +20,27 @@ const socialLinks = [
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-divider mt-24">
-  <div class="max-w-5xl mx-auto px-6 py-8 flex items-center justify-between">
+<footer class="mt-24">
+    <div class="max-w-5xl mx-auto px-9">
+    <hr class="border-divider" />
+    </div>
+    <div class="max-w-5xl mx-auto px-9 py-8 flex items-center justify-between">
 
-    <p class="text-muted text-sm">
-      &copy; {year} Kiran Katarki
-    </p>
+        <p class="text-muted text-sm">
+        &copy; {year} Kiran Katarki
+        </p>
 
-    <div class="flex items-center gap-5">
-      {socialLinks.map(link => (
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={link.label}
-          class="text-muted hover:text-text transition-colors"
-          set:html={link.icon}
-        />
-      ))}
+        <div class="flex items-center gap-5">
+        {socialLinks.map(link => (
+            <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={link.label}
+            class="text-muted hover:text-text transition-colors"
+            set:html={link.icon}
+            />
+        ))}
     </div>
 
   </div>

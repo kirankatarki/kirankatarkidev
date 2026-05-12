@@ -1,0 +1,48 @@
+---
+const skillGroups = [
+  {
+    label: 'Build',
+    skills: ['Python', 'Node.js', 'React', 'Postgres', 'Redis', 'AWS', 'System design'],
+    pillClass: 'text-accent-secondary border-accent-secondary/30',
+  },
+  {
+    label: 'Ship',
+    skills: ['Product strategy', 'Roadmapping', 'Pricing', 'P&L ownership'],
+    pillClass: 'text-accent border-accent/30',
+  },
+  {
+    label: 'Scale',
+    skills: ['Team building', 'Hiring', 'Cross-functional leadership', 'Regulated markets'],
+    pillClass: 'text-muted border-border',
+  },
+];
+---
+
+<section class="max-w-5xl mx-auto px-9 py-7">
+
+  <p class="text-[11px] uppercase tracking-[1.2px] text-muted mb-5">
+    Skills
+  </p>
+
+  <div class="flex flex-col gap-5">
+    {skillGroups.map(group => (
+      <div>
+        <p class="text-[11px] uppercase tracking-[1.2px] text-muted mb-2">
+          {group.label}
+        </p>
+        <div class="flex flex-wrap gap-[7px]">
+          {group.skills.map(skill => (
+            <span class={`text-[12px] border px-[14px] py-1 rounded-[4px] ${group.pillClass}`}>
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<div class="max-w-5xl mx-auto px-9">
+  <hr class="border-divider" />
+</div>

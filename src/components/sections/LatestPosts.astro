@@ -1,0 +1,41 @@
+---
+const posts = [
+  {
+    title: 'Building a contact form with serverless functions',
+    date: 'May 2026',
+    href: '/blogs/contact-form-serverless',
+  },
+  {
+    title: 'Architecting telehealth for German data privacy',
+    date: 'May 2026',
+    href: '/blogs/telehealth-german-data-privacy',
+  },
+];
+---
+
+<section class="max-w-5xl mx-auto px-9 py-7">
+
+  <p class="text-[11px] uppercase tracking-[1.2px] text-muted mb-3">
+    Latest posts
+  </p>
+
+  <div>
+    {posts.map((post, i) => (
+      <a
+        href={post.href}
+        class={[
+          'flex items-center justify-between py-3 hover:text-accent transition-colors',
+          i < posts.length - 1 ? 'border-b border-border' : '',
+        ].join(' ')}
+      >
+        <h3 class="text-[13px] font-medium text-text">{post.title}</h3>
+        <span class="text-[11px] text-muted ml-8 shrink-0">{post.date}</span>
+      </a>
+    ))}
+  </div>
+
+</section>
+
+<div class="max-w-5xl mx-auto px-9">
+  <hr class="border-divider" />
+</div>

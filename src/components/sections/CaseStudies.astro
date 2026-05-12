@@ -1,0 +1,47 @@
+---
+const caseStudies = [
+  {
+    title: 'Datenschutz-certified telehealth platform',
+    description: 'DSGVO-compliant video consultation for the German healthcare market',
+    role: 'Product & engineering lead',
+    href: '/case-studies/telehealth-platform',
+  },
+  {
+    title: 'Fintech LMS with 100K+ subscribers',
+    description: 'Billing and content delivery for investment education channel',
+    role: 'Product & engineering lead',
+    href: '/case-studies/fintech-lms',
+  },
+];
+---
+
+<section class="max-w-5xl mx-auto px-9 py-7">
+
+  <p class="text-[11px] uppercase tracking-[1.2px] text-muted mb-5">
+    Case studies
+  </p>
+
+  <div class="flex flex-col gap-2">
+    {caseStudies.map(study => (
+      <a
+        href={study.href}
+        class="block border-l-[3px] border-accent-secondary bg-accent-secondary/5 px-[14px] py-3 hover:bg-accent-secondary/10 transition-colors"
+      >
+        <h3 class="text-[13px] font-medium text-text mb-0.5">
+          {study.title}
+        </h3>
+        <p class="text-[11px] text-muted leading-[1.5] mb-[5px]">
+          {study.description}
+        </p>
+        <p class="text-[11px] text-accent">
+          {study.role}
+        </p>
+      </a>
+    ))}
+  </div>
+
+</section>
+
+<div class="max-w-5xl mx-auto px-9">
+  <hr class="border-divider" />
+</div>

@@ -1,0 +1,52 @@
+---
+const socials = [
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/kirankatarki' },
+  { label: 'GitHub', href: 'https://github.com/kirankatarki' },
+  { label: 'Email', href: 'mailto:kirankat07@gmail.com' },
+];
+---
+
+<section class="max-w-5xl mx-auto px-9 py-7">
+
+  <p class="text-[11px] uppercase tracking-[1.2px] text-muted mb-5">
+    Get in touch
+  </p>
+
+  <form class="flex flex-col gap-[7px] max-w-[360px]">
+    <input
+      type="text"
+      placeholder="Your name"
+      class="bg-surface border border-border text-text text-[12px] px-3 py-[9px] rounded-[6px] outline-none focus:border-accent/50 transition-colors placeholder:text-muted"
+    />
+    <input
+      type="email"
+      placeholder="Email"
+      class="bg-surface border border-border text-text text-[12px] px-3 py-[9px] rounded-[6px] outline-none focus:border-accent/50 transition-colors placeholder:text-muted"
+    />
+    <textarea
+      placeholder="Message"
+      rows="3"
+      class="bg-surface border border-border text-text text-[12px] px-3 py-[9px] rounded-[6px] outline-none focus:border-accent/50 transition-colors placeholder:text-muted resize-none"
+    ></textarea>
+    <button
+      type="submit"
+      class="bg-accent text-surface text-[13px] font-medium py-[10px] rounded-[6px] hover:opacity-90 transition-opacity w-full"
+    >
+      Send message
+    </button>
+  </form>
+
+  <div class="flex gap-[18px] mt-[14px]">
+    {socials.map(social => (
+      <a
+        href={social.href}
+        target={social.href.startsWith('mailto') ? undefined : '_blank'}
+        rel={social.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+        class="text-[12px] text-muted hover:text-text transition-colors"
+      >
+        {social.label}
+      </a>
+    ))}
+  </div>
+
+</section>

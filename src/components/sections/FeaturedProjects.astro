@@ -1,0 +1,68 @@
+---
+const projects = [
+  {
+    title: 'Distributed rate limiter',
+    description: 'Sliding window rate limiting with Redis backend',
+    tags: ['Redis', 'Python'],
+    href: '/projects/distributed-rate-limiter',
+  },
+  {
+    title: 'Survey automation tool',
+    description: 'Physical survey digitization and workflow platform',
+    tags: ['React', 'Node.js'],
+    href: '/projects/survey-automation',
+  },
+  {
+    title: 'LLM discharge summaries',
+    description: 'Voice-to-LLM clinical summary tool',
+    tags: ['LLM', 'Python'],
+    href: '/projects/llm-discharge-summaries',
+  },
+  {
+    title: 'Workflow approval engine',
+    description: 'Grant and incentive approval for colleges',
+    tags: ['Node.js', 'Postgres'],
+    href: '/projects/workflow-approval-engine',
+  },
+];
+---
+
+<section class="max-w-5xl mx-auto px-9 py-7">
+
+  <p class="text-[11px] uppercase tracking-[1.2px] text-muted mb-5">
+    Featured projects
+  </p>
+
+  <div class="grid grid-cols-2 gap-3">
+    {projects.map(project => (
+      <a href={project.href} class="block bg-surface border border-border rounded-lg overflow-hidden hover:border-accent/30 transition-colors">
+
+        <div class="h-[72px] bg-accent-secondary/5 flex items-center justify-center text-[11px] text-muted">
+          screenshot
+        </div>
+
+        <div class="p-3">
+          <div class="flex gap-[5px] mb-[5px]">
+            {project.tags.map(tag => (
+              <span class="text-[11px] px-[9px] py-0.5 rounded-[4px] bg-accent-secondary text-white">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h3 class="text-[13px] font-medium text-text mb-0.5">
+            {project.title}
+          </h3>
+          <p class="text-[11px] text-muted leading-[1.5]">
+            {project.description}
+          </p>
+        </div>
+
+      </a>
+    ))}
+  </div>
+
+</section>
+
+<div class="max-w-5xl mx-auto px-9">
+  <hr class="border-divider" />
+</div>
