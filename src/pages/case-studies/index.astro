@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getAllCaseStudies } from '../../lib/sanity';
+
+const caseStudies = await getAllCaseStudies();
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'short',
+  });
+}
+---
+
+<Base title="Case Studies - Kiran Katarki">
+  <div class="max-w-5xl mx-auto px-9 py-11">
+
+    <h1 class="text-[26px] font-medium text-text mb-8">Case Studies</h1>
+
+    <div class="flex flex-col gap-2">
+      {caseStudies.map((study: any) => (
+        <a
+          href={`/case-studies/${study.slug.current}`}
+          class="block border-l-[3px] border-accent-secondary bg-accent-secondary/5 px-[14px] py-4 hover:bg-accent-secondary/10 transition-colors"
+        >
+          <div class="flex items-start justify-between">
+            <div class="flex-1 pr-8">
+              <h2 class="text-[13px] font-medium text-text mb-1">
+                {study.title}
+              </h2>
+              {study.excerpt && (
+                <p class="text-[11px] text-muted leading-[1.5] mb-2">
+                  {study.excerpt}
+                </p>
+              )}
+              <div class="flex items-center gap-3">
+                {study.role && (
+                  <span class="text-[11px] text-accent">{study.role}</span>
+                )}
+                {study.domain && (
+                  <span class="text-[11px] text-muted">{study.domain}</span>
+                )}
+              </div>
+            </div>
+            <div class="shrink-0 text-right">
+              {study.publishedAt && (
+                <span class="text-[11px] text-muted">
+                  {formatDate(study.publishedAt)}
+                </span>
+              )}
+              {study.client && (
+                <p class="text-[11px] text-muted mt-0.5">{study.client}</p>
+              )}
+            </div>
+          </div>
+
+          {study.techStack && study.techStack.length > 0 && (
+            <div class="flex gap-[5px] mt-3">
+              {study.techStack.map((tech: string) => (
+                <span class="text-[11px] px-[9px] py-0.5 rounded-[4px] bg-accent-secondary text-white">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+        </a>
+      ))}
+
+      {caseStudies.length === 0 && (
+        <p class="text-[13px] text-muted py-5">No case studies yet.</p>
+      )}
+    </div>
+
+  </div>
+</Base>

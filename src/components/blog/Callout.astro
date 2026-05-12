@@ -1,0 +1,13 @@
+---
+const { node } = Astro.props;
+
+const styles: Record<string, string> = {
+  warning: 'border-accent bg-accent/5 text-accent',
+  tip: 'border-accent-secondary bg-accent-secondary/5 text-accent-secondary',
+  info: 'border-muted bg-surface text-muted',
+};
+---
+
+<div class={`border-l-[3px] px-4 py-3 my-4 text-[13px] ${styles[node.type] ?? styles.info}`}>
+  {node.body}
+</div>

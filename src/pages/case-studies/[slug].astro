@@ -1,0 +1,94 @@
+---
+import Callout from '../../components/blog/Callout.astro';
+import CodeBlock from '../../components/blog/CodeBlock.astro';
+import Base from '../../layouts/Base.astro';
+import { getCaseStudyBySlug } from '../../lib/sanity';
+import { PortableText } from 'astro-portabletext';
+
+const { slug } = Astro.params;
+const study = await getCaseStudyBySlug(slug as string);
+
+if (!study) {
+  return Astro.redirect('/404');
+}
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Base title={`${study.title} - Kiran Katarki`}>
+  <div class="max-w-5xl mx-auto px-9 py-11">
+
+    <a href="/case-studies" class="text-[12px] text-muted hover:text-text transition-colors">
+      &larr; Case Studies
+    </a>
+
+    <div class="mt-6 mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        {study.domain && (
+          <span class="text-[11px] px-[9px] py-0.5 rounded-[4px] bg-accent-secondary/10 text-accent-secondary">
+            {study.domain}
+          </span>
+        )}
+      </div>
+
+      <h1 class="text-[26px] font-medium text-text mb-2">
+        {study.title}
+      </h1>
+
+      <div class="flex items-center gap-4 text-[11px] text-muted mb-4">
+        {study.client && <span>{study.client}</span>}
+        {study.publishedAt && <span>{formatDate(study.publishedAt)}</span>}
+      </div>
+
+      {study.role && (
+        <p class="text-[12px] text-accent mb-4">{study.role}</p>
+      )}
+
+      {study.metrics && study.metrics.length > 0 && (
+        <div class="flex gap-6 py-4 border-y border-border">
+          {study.metrics.map((metric: any) => (
+            <div>
+              <p class="text-[18px] font-medium text-text">{metric.value}</p>
+              <p class="text-[11px] text-muted">{metric.label}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {study.techStack && study.techStack.length > 0 && (
+        <div class="flex gap-[5px] mt-4">
+          {study.techStack.map((tech: string) => (
+            <span class="text-[11px] px-[9px] py-0.5 rounded-[4px] bg-accent-secondary text-white">
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="max-w-5xl mx-auto px-9">
+      <hr class="border-divider" />
+    </div>
+
+    {study.body && (
+      <div class="prose prose-neutral mt-8 max-w-2xl">
+        <PortableText
+          value={study.body}
+          components={{
+            type: {
+              codeBlock: CodeBlock,
+              callout: Callout,
+            },
+          }}
+        />
+      </div>
+    )}
+
+  </div>
+</Base>

@@ -50,6 +50,7 @@ Dark academia warmth. Distinctive without being loud. NOT the typical dev portfo
 Red leads as primary accent, green for secondary/tags.
 
 #### Light mode
+
 - Background: `#EDE8DF` (warm parchment)
 - Surface: `#FAF6EE` (lighter parchment for cards, nav)
 - Primary accent: `#DA291C` (Man Utd red) - buttons, CTAs, contact nav link, role labels
@@ -60,6 +61,7 @@ Red leads as primary accent, green for secondary/tags.
 - Dividers: `rgba(30,26,20,0.1)`
 
 #### Dark mode
+
 - Background: `#1E1A14`
 - Surface: `#2A2520`
 - Primary accent: `#EF5350` (lighter red)
@@ -104,6 +106,7 @@ slug: auto from filename
 ### Sanity blog post schema
 
 Fields:
+
 - title: string, required
 - slug: slug, auto-generated from title
 - publishedAt: datetime
@@ -114,6 +117,7 @@ Fields:
 - readingTime: number
 
 Custom block types in body:
+
 - Code block: language (string) + code (text) - rendered with Shiki
 - Callout: type (info/warning/tip) + body text
 - Image with caption: image + caption string + optional "wide" toggle
@@ -121,6 +125,7 @@ Custom block types in body:
 ### Sanity case study schema
 
 Fields:
+
 - title: string, required
 - slug: slug, auto-generated from title
 - publishedAt: datetime
@@ -143,12 +148,15 @@ Fields:
 ## Skills pills - "Build / Ship / Scale" grouping
 
 ### Build (green secondary accent pills)
+
 Python, Node.js, React, Postgres, Redis, AWS, System design
 
 ### Ship (red-tinted pills)
+
 Product strategy, Roadmapping, Pricing, P&L ownership
 
 ### Scale (neutral/muted pills)
+
 Team building, Hiring, Cross-functional leadership, Regulated markets
 
 ## Projects (personal, end-to-end builds)
@@ -170,6 +178,7 @@ Case study cards use green left border accent to visually distinguish from proje
 ## Environment variables
 
 ### .env.example (committed to repo)
+
 ```
 # Sanity CMS
 PUBLIC_SANITY_PROJECT_ID=
@@ -184,11 +193,13 @@ PUBLIC_SITE_URL=
 ```
 
 ### Rules
+
 - `.env` is in `.gitignore` from day one
 - Variables prefixed with `PUBLIC_` are safe for client-side (Sanity project ID, dataset name, site URL)
 - Variables WITHOUT `PUBLIC_` prefix are server-side only (Sanity API token, Resend API key)
 - Sanity viewer token (read-only) for Astro site, editor token stays in Sanity Studio only
 - Production variables set in Vercel dashboard, never in repo
+- HIGH PRIORITY RULE - Provide code that is version verified for astro v5+ and zod 4+ and all other packages - No outdated version code to be shared
 
 ## Rendering pipeline
 
@@ -199,6 +210,7 @@ PUBLIC_SITE_URL=
 ## Blog launch strategy
 
 Launch with 1-2 posts:
+
 1. A technical build post about the contact form or portfolio site itself
 2. A Kalpas case study (e.g. "Building a telehealth platform for German data privacy")
 

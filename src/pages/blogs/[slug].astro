@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPostBySlug } from '../../lib/sanity';
+import { PortableText } from 'astro-portabletext';
+
+import CodeBlock from '../../components/blog/CodeBlock.astro';
+import Callout from '../../components/blog/Callout.astro';
+
+const { slug } = Astro.params;
+const post = await getPostBySlug(slug as string);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Base title={`${post.title} - Kiran Katarki`}>
+  <div class="max-w-5xl mx-auto px-9 py-11">
+
+    <a href="/blogs" class="text-[12px] text-muted hover:text-text transition-colors">
+      &larr; Blog
+    </a>
+
+    <div class="mt-6 mb-8">
+      {post.tags && post.tags.length > 0 && (
+        <div class="flex gap-[5px] mb-3">
+          {post.tags.map((tag: string) => (
+            <span class="text-[11px] px-[9px] py-0.5 rounded-[4px] bg-accent-secondary/10 text-accent-secondary">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <h1 class="text-[26px] font-medium text-text mb-2">
+        {post.title}
+      </h1>
+
+      <div class="flex items-center gap-4 text-[11px] text-muted">
+        {post.publishedAt && (
+          <span>{formatDate(post.publishedAt)}</span>
+        )}
+        {post.readingTime && (
+          <span>{post.readingTime} min read</span>
+        )}
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-9">
+      <hr class="border-divider" />
+    </div>
+
+    {post.body && (
+      <div class="prose prose-neutral mt-8 max-w-2xl">
+        <PortableText
+            value={post.body}
+            components={{
+                type: {
+                codeBlock: CodeBlock,
+                callout: Callout,
+                },
+            }}
+        />
+      </div>
+    )}
+
+  </div>
+</Base>

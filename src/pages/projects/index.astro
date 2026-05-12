@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<Base title="Projects - Kiran Katarki">
+  <div class="max-w-5xl mx-auto px-9 py-11">
+
+    <h1 class="text-[26px] font-medium text-text mb-8">Projects</h1>
+
+    <div class="grid grid-cols-2 gap-3">
+      {projects.map(project => (
+        <a
+          href={`/projects/${project.id}`}
+          class="block bg-surface border border-border rounded-lg overflow-hidden hover:border-accent/30 transition-colors"
+        >
+          <div class="h-[72px] bg-accent-secondary/5 flex items-center justify-center text-[11px] text-muted">
+            screenshot
+          </div>
+          <div class="p-3">
+            <div class="flex gap-[5px] mb-[5px]">
+              {project.data.techStack.map(tag => (
+                <span class="text-[11px] px-[9px] py-0.5 rounded-[4px] bg-accent-secondary text-white">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h3 class="text-[13px] font-medium text-text mb-0.5">
+              {project.data.title}
+            </h3>
+            <p class="text-[11px] text-muted leading-[1.5]">
+              {project.data.description}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</Base>

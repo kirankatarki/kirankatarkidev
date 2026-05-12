@@ -1,18 +1,7 @@
 ---
-const caseStudies = [
-  {
-    title: 'Datenschutz-certified telehealth platform',
-    description: 'DSGVO-compliant video consultation for the German healthcare market',
-    role: 'Product & engineering lead',
-    href: '/case-studies/telehealth-platform',
-  },
-  {
-    title: 'Fintech LMS with 100K+ subscribers',
-    description: 'Billing and content delivery for investment education channel',
-    role: 'Product & engineering lead',
-    href: '/case-studies/fintech-lms',
-  },
-];
+import { getAllCaseStudies } from '../../lib/sanity';
+
+const caseStudies = await getAllCaseStudies();
 ---
 
 <section class="max-w-5xl mx-auto px-9 py-7">
@@ -22,22 +11,26 @@ const caseStudies = [
   </p>
 
   <div class="flex flex-col gap-2">
-    {caseStudies.map(study => (
+    {caseStudies.map((study: any) => (
       <a
-        href={study.href}
+        href={`/case-studies/${study.slug.current}`}
         class="block border-l-[3px] border-accent-secondary bg-accent-secondary/5 px-[14px] py-3 hover:bg-accent-secondary/10 transition-colors"
       >
         <h3 class="text-[13px] font-medium text-text mb-0.5">
           {study.title}
         </h3>
         <p class="text-[11px] text-muted leading-[1.5] mb-[5px]">
-          {study.description}
+          {study.excerpt}
         </p>
         <p class="text-[11px] text-accent">
           {study.role}
         </p>
       </a>
     ))}
+
+    {caseStudies.length === 0 && (
+      <p class="text-[13px] text-muted py-3">No case studies yet.</p>
+    )}
   </div>
 
 </section>
